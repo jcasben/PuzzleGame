@@ -1,6 +1,6 @@
 package puzzlegame;
 
-import puzzlegame.window.GameWindow;
+import puzzlegame.windows.GameWindow;
 
 import java.awt.*;
 
