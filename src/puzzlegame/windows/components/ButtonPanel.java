@@ -1,5 +1,7 @@
 package puzzlegame.windows.components;
 
+import puzzlegame.Game;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,11 +9,13 @@ import java.awt.*;
  * @author jcasb
  */
 public class ButtonPanel extends JPanel {
-    public ButtonPanel() {
+
+
+    public ButtonPanel(JSplitPane jsp) {
         setLayout(new GridLayout(4,1));
 
         JButton b1 = new JButton("NUEVA PARTIDA");
-        b1.addActionListener(e -> System.out.println("b1"));
+        b1.addActionListener(e -> new Game(jsp));
         b1.setBackground(Color.DARK_GRAY);
         b1.setForeground(Color.WHITE);
         b1.setFocusPainted(false);
