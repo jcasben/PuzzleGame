@@ -7,12 +7,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class VisualizerPanel extends JPanel {
+public class StandByPanel extends JPanel {
 
 
-    public VisualizerPanel() {
+    public StandByPanel() {
         setLayout(new BorderLayout());
-        //setBackground(Color.BLUE);
         BufferedImage myPicture;
         try {
             myPicture = ImageIO.read(new File("resources/assets/backgroundUIB.jpg"));

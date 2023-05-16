@@ -1,5 +1,6 @@
 package puzzlegame.windows;
 
+import puzzlegame.Game;
 import puzzlegame.windows.components.MainPanel;
 
 import javax.swing.*;
@@ -9,10 +10,9 @@ import java.awt.*;
  * @author jcasb
  */
 public class GameWindow extends JFrame {
-    private JToolBar tb = new JToolBar();
-
+    JSplitPane jsp = new JSplitPane();
     public GameWindow() {
-        initFrame("test",1300,850);
+        initFrame("PUZZLE GAME - PRACTICA FINAL PROGRAMACION II 2022-2023",1300,850);
     }
 
     /**
@@ -27,7 +27,7 @@ public class GameWindow extends JFrame {
         setResizable(false);
         setVisible(true);
         setJMenuBar(initMenuBar());
-        setContentPane(new MainPanel());
+        setContentPane(new MainPanel(jsp));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -36,6 +36,7 @@ public class GameWindow extends JFrame {
         JMenu menu = new JMenu("MENU");
 
         JMenuItem mNewGame = new JMenuItem("NUEVA PARTIDA");
+        mNewGame.addActionListener(e -> new Game(jsp));
         menu.add(mNewGame);
 
         JMenuItem mClasif = new JMenuItem("CLASIFICACIÓN GENERAL");
@@ -55,11 +56,4 @@ public class GameWindow extends JFrame {
 
        return menuBar;
     }
-    /*private void addComponents() {
-        container = this.getContentPane();
-        //tb.add(new JButton("Menu"),NORTH);
-        container.add(new ButtonPanel(),WEST);
-        //container.add(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT),CENTER);
-        //container.add(new VisualizationPanel(),EAST);
-    }*/
 }
