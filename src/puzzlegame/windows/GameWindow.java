@@ -1,6 +1,7 @@
 package puzzlegame.windows;
 
 import puzzlegame.Game;
+import puzzlegame.windows.components.HistorialPanel;
 import puzzlegame.windows.components.MainPanel;
 
 import javax.swing.*;
@@ -26,12 +27,11 @@ public class GameWindow extends JFrame {
         setSize(new Dimension(width,height));
         setResizable(false);
         setVisible(true);
-        setJMenuBar(initMenuBar());
-        setContentPane(new MainPanel(jsp));
+        setContentPane(new MainPanel(jsp,this));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    private JMenuBar initMenuBar() {
+    public JMenuBar initMenuBar(JSplitPane jsp) {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("MENU");
 
@@ -39,7 +39,8 @@ public class GameWindow extends JFrame {
         mNewGame.addActionListener(e -> new Game(jsp));
         menu.add(mNewGame);
 
-        JMenuItem mClasif = new JMenuItem("CLASIFICACIÓN GENERAL");
+        JMenuItem mClasif = new JMenuItem("HISTORIAL GENERAL");
+        mClasif.addActionListener(e -> jsp.setRightComponent(new HistorialPanel()));
         menu.add(mClasif);
 
         JMenuItem mHistory = new JMenuItem("HISTORIAL");
