@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InGamePanel extends JPanel {
-    public InGamePanel() {
-        setVisible(true);
+    public InGamePanel(JSplitPane jsp) {
         setLayout(new BorderLayout());
-        JSplitPane jsp = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JPanel(), new FooterPanel());
-        jsp.setEnabled(false);
-        jsp.setDividerLocation(675);
-        add(jsp);
+        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new JPanel(), new FooterPanel(jsp));
+        jsp2.setEnabled(false);
+        jsp2.setDividerLocation(675);
+        add(jsp2);
+        setVisible(true);
     }
 }
