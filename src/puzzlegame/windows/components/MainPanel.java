@@ -1,6 +1,7 @@
 package puzzlegame.windows.components;
 
 import puzzlegame.Game;
+import puzzlegame.windows.GameWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,22 +13,23 @@ public class MainPanel extends JPanel {
     private JToolBar toolBar;
     private JSplitPane jsp;
 
-    public MainPanel(JSplitPane jsp) {
-
+    public MainPanel(JSplitPane jsp, GameWindow frame) {
         setLayout(new BorderLayout());
+        this.jsp = jsp;
 
-        //JSplitPanes
-        jsp = new JSplitPane(JSplitPane.VERTICAL_SPLIT,new StandByPanel(),new FooterPanel());
-        jsp.setEnabled(false);
+        //Declaración de JSplitPanes
+        this.jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        this.jsp.setLeftComponent(new ButtonPanel(this.jsp));
+        this.jsp.setRightComponent(new StandByPanel());
+        this.jsp.setDividerLocation(200);
+        this.jsp.setEnabled(false);
 
-        JSplitPane jsp2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,new ButtonPanel(jsp),jsp);
+        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,initToolBar(),this.jsp);
         jsp2.setEnabled(false);
 
-        JSplitPane jsp3 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,initToolBar(),jsp2);
-        jsp3.setEnabled(false);
+        frame.setJMenuBar(frame.initMenuBar(this.jsp));
 
-        this.jsp = jsp;
-        add(jsp3);
+        add(jsp2);
         setVisible(true);
     }
 
@@ -48,6 +50,7 @@ public class MainPanel extends JPanel {
 
         JButton tbHistory = new JButton();
         tbHistory.setIcon(new ImageIcon("resources/assets/icons/generalHist.jpg"));
+        tbHistory.addActionListener(e -> jsp.setRightComponent(new HistorialPanel()));
         tbHistory.setFocusPainted(false);
         toolBar.add(tbHistory);
 
