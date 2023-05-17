@@ -21,8 +21,8 @@ public class ButtonPanel extends JPanel {
         b1.setFocusPainted(false);
         add(b1);
 
-        JButton b2 = new JButton("CLASIFICACIÓN GENERAL");
-        b2.addActionListener(e -> System.out.println("b2"));
+        JButton b2 = new JButton("HISTORIAL GENERAL");
+        b2.addActionListener(e -> jsp.setRightComponent(new HistorialPanel()));
         b2.setBackground(Color.DARK_GRAY);
         b2.setForeground(Color.WHITE);
         b2.setFocusPainted(false);
