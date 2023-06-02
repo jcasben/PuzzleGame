@@ -1,22 +1,20 @@
 package puzzlegame;
 
-import puzzlegame.windows.components.InGamePanel;
+import puzzlegame.windows.components.PanelContenidos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Game {
+public class Partida {
     private JTextField name = new JTextField();
     private String playerName;
     private JTextField horizontalDivs = new JTextField();
     private int playerHDivs;
     private JTextField verticalDivs = new JTextField();
     private int playerVDivs;
-    private JSplitPane jsp;
 
-    public Game(JSplitPane jsp) {
+    public Partida() {
         newGameWindow();
-        this.jsp = jsp;
     }
 
     private void newGameWindow() {
@@ -43,7 +41,7 @@ public class Game {
         b.addActionListener(e -> {
             if(savePlayerInput()) {
                 askingFrame.dispose();
-                jsp.setRightComponent(new InGamePanel(this.jsp));
+                PanelContenidos.getInstance().cambiarAPartida();
             }
         });
         button.add(b);
