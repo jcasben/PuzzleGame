@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class StandByPanel extends JPanel {
+public class PanelStandBy extends JPanel {
 
 
-    public StandByPanel() {
+    public PanelStandBy() {
         setLayout(new BorderLayout());
         BufferedImage myPicture;
         try {
