@@ -1,12 +1,12 @@
 package puzzlegame;
 
-import puzzlegame.windows.GameWindow;
+import puzzlegame.windows.Ventana;
 
 import java.awt.*;
 
 public class Main {
-    public static GameWindow window;
+    public static Ventana window;
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> window = new GameWindow());
+        EventQueue.invokeLater(() -> window = new Ventana());
     }
 }
