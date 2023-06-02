@@ -1,8 +1,7 @@
 package puzzlegame.windows;
 
-import puzzlegame.Game;
-import puzzlegame.windows.components.HistorialPanel;
-import puzzlegame.windows.components.MainPanel;
+import puzzlegame.Partida;
+import puzzlegame.windows.components.PanelContenidos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +9,8 @@ import java.awt.*;
 /**
  * @author jcasb
  */
-public class GameWindow extends JFrame {
-    JSplitPane jsp = new JSplitPane();
-    public GameWindow() {
+public class Ventana extends JFrame {
+    public Ventana() {
         initFrame("PUZZLE GAME - PRACTICA FINAL PROGRAMACION II 2022-2023",1300,850);
     }
 
@@ -27,20 +25,21 @@ public class GameWindow extends JFrame {
         setSize(new Dimension(width,height));
         setResizable(false);
         setVisible(true);
-        setContentPane(new MainPanel(jsp,this));
+        setContentPane(PanelContenidos.getInstance());
+        initMenuBar();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public JMenuBar initMenuBar(JSplitPane jsp) {
+    public JMenuBar initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("MENU");
 
         JMenuItem mNewGame = new JMenuItem("NUEVA PARTIDA");
-        mNewGame.addActionListener(e -> new Game(jsp));
+        mNewGame.addActionListener(e -> new Partida());
         menu.add(mNewGame);
 
         JMenuItem mClasif = new JMenuItem("HISTORIAL GENERAL");
-        mClasif.addActionListener(e -> jsp.setRightComponent(new HistorialPanel()));
+        mClasif.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion());
         menu.add(mClasif);
 
         JMenuItem mHistory = new JMenuItem("HISTORIAL");
