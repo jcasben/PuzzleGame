@@ -27,6 +27,7 @@ public class Ventana extends JFrame {
         setVisible(true);
         setContentPane(PanelContenidos.getInstance());
         initMenuBar();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 

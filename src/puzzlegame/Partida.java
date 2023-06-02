@@ -22,10 +22,11 @@ public class Partida {
         askingFrame.setBounds(300,350,700,150);
         askingFrame.setLayout(new BorderLayout());
         askingFrame.setResizable(false);
+        askingFrame.setLocationRelativeTo(null);
         askingFrame.setVisible(true);
 
         JPanel textFields = new JPanel();
-        textFields.setLayout(new GridLayout(3,3));
+        textFields.setLayout(new GridLayout(3,2));
         textFields.add(new JLabel("NOMBRE DEL JUGADOR"));
         textFields.add(name);
         textFields.add(new JLabel("NÚMERO DE SUBDIVISIONES HORIZONTALES"));
@@ -41,7 +42,7 @@ public class Partida {
         b.addActionListener(e -> {
             if(savePlayerInput()) {
                 askingFrame.dispose();
-                PanelContenidos.getInstance().cambiarAPartida();
+                PanelContenidos.getInstance().cambiarAPartida(playerHDivs, playerHDivs);
             }
         });
         button.add(b);
@@ -62,7 +63,7 @@ public class Partida {
         try {
             playerHDivs = Integer.parseInt(horizontalDivs.getText());
             bHDivs = true;
-            playerVDivs = Integer.parseInt(verticalDivs.getText());
+            playerHDivs = Integer.parseInt(verticalDivs.getText());
             bVDivs = true;
         } catch(NumberFormatException nfe) {
             //ignore
