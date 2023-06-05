@@ -6,41 +6,37 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Random;
 
 public class PanelPartida extends JPanel {
-    private JPanel panelPartida;
+
     public PanelPartida(int filas, int columnas) {
         setLayout(new BorderLayout());
-        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT,iniPanelPartida(filas,columnas), new FooterPanel());
+        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, iniPanelPartida(filas, columnas), new FooterPanel());
         jsp2.setEnabled(false);
         jsp2.setDividerLocation(675);
         add(jsp2);
         setVisible(true);
     }
-    // hay que dividir las imagenes
+
     private JPanel iniPanelPartida(int filas, int columnas) {
-        panelPartida = new JPanel();
-        /*
-        panelPartida.setLayout(new GridLayout(filas,columnas));
-        BufferedImage myPicture;
-        try {
-            myPicture = ImageIO.read(new File("resources/assets/puzzles/" + nombreImagen() + ".jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        //PanelSubImagen puzzle = new PanelSubImagen(filas,columnas);
+
+        JPanel puzzle = new JPanel();
+        puzzle.setLayout(new GridLayout(filas,columnas,5,5));
+        Imagen img  = new Imagen(nombreImagen());
+        SubImagen [] subImagenes = img.dividir(filas, columnas); //Generamos las subimagenes.
+        for (int i = 0; i < filas*columnas; i++) {
+
+            puzzle.add(subImagenes[i].getJLabelSubimagen());
         }
-        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-        panelPartida.add(picLabel);
-
-         */
-
-
-        return panelPartida;
+        return puzzle;
     }
     private String nombreImagen() {
         Random ran = new Random();
         String nombre  = null;
-        int i = ran.nextInt(4);
+        int i = ran.nextInt(3);
         switch (i){
             case 0:
                 nombre = "911";
@@ -51,9 +47,6 @@ public class PanelPartida extends JPanel {
             case 2:
                 nombre = "mazda-rx7";
                 break;
-            case 3:
-                nombre = "porsche";
-                break;
         }
         return nombre;
 
@@ -63,6 +56,24 @@ public class PanelPartida extends JPanel {
 
 
 /*
+
+        panelPartida = new JPanel();
+
+
+        BufferedImage myPicture;
+        try {
+            myPicture = ImageIO.read(new File("resources/assets/puzzles/" + nombreImagen() + ".jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        JLabel picLabel = new JLabel(new ImageIcon(myPicture.getScaledInstance(1200,850,Image.SCALE_DEFAULT)));
+        panelPartida.add(picLabel);
+
+        return panelPartida;
+
+        --------------------------------------------------------------------------------
+
         setLayout(new BorderLayout());
         BufferedImage myPicture;
         try {
@@ -75,3 +86,4 @@ public class PanelPartida extends JPanel {
 
         setVisible(true);
  */
+

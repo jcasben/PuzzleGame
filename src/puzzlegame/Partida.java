@@ -42,7 +42,7 @@ public class Partida {
         b.addActionListener(e -> {
             if(savePlayerInput()) {
                 askingFrame.dispose();
-                PanelContenidos.getInstance().cambiarAPartida(playerHDivs, playerHDivs);
+                PanelContenidos.getInstance().cambiarAPartida(playerHDivs, playerVDivs);
             }
         });
         button.add(b);
@@ -63,7 +63,7 @@ public class Partida {
         try {
             playerHDivs = Integer.parseInt(horizontalDivs.getText());
             bHDivs = true;
-            playerHDivs = Integer.parseInt(verticalDivs.getText());
+            playerVDivs = Integer.parseInt(verticalDivs.getText());
             bVDivs = true;
         } catch(NumberFormatException nfe) {
             //ignore
