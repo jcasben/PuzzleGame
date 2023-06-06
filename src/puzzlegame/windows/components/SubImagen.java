@@ -4,22 +4,28 @@ import javax.swing.*;
 
 public class SubImagen extends JLabel {
     private ImageIcon subimagen;
-    private int posicion;
+    private int posicionCorrecta, posicionActual;
     private JLabel JLabelSubimagen;
     public SubImagen (ImageIcon img, int pos){
         JLabelSubimagen =  new JLabel(img);
         subimagen = img;
-        posicion = pos;
+        posicionCorrecta = pos;
+        posicionActual = pos;
     }
 
-    public int getPosicion(){
-        return posicion;
+    public int getPosicionCorrecta(){
+        return posicionCorrecta;
     }
+    public int getPosicionActual(){ return posicionActual; }
     public ImageIcon getSubimagen(){
         return subimagen;
     }
     public JLabel getJLabelSubimagen(){
         return JLabelSubimagen;
+    }
+    
+    public void setPosicionActual(int posA) {
+        posicionActual = posA;
     }
 
 }
