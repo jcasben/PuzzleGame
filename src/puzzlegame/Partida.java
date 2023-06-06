@@ -1,6 +1,8 @@
 package puzzlegame;
 
+import puzzlegame.windows.components.Imagen;
 import puzzlegame.windows.components.PanelContenidos;
+import puzzlegame.windows.components.SubImagen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,7 @@ public class Partida {
     private int playerHDivs;
     private JTextField verticalDivs = new JTextField();
     private int playerVDivs;
+    private SubImagen[] subImagenes;
 
     public Partida() {
         newGameWindow();
@@ -42,7 +45,9 @@ public class Partida {
         b.addActionListener(e -> {
             if(savePlayerInput()) {
                 askingFrame.dispose();
-                PanelContenidos.getInstance().cambiarAPartida(playerHDivs, playerVDivs);
+                Imagen puzzlePartida = new Imagen(playerHDivs,playerVDivs); //crear imagen
+                subImagenes = puzzlePartida.getDivisiones();
+                PanelContenidos.getInstance().cambiarAPartida(puzzlePartida); //mostrar imagen
             }
         });
         button.add(b);

@@ -76,8 +76,8 @@ public class PanelContenidos extends JPanel {
         return iconosMenu;
     }
 
-    public void cambiarAPartida(int filas, int columnas) {
-        jsp.setRightComponent(new PanelPartida(filas, columnas));
+    public void cambiarAPartida(Imagen img) {
+        jsp.setRightComponent(new PanelPartida(img));
         jsp.setDividerLocation(180);
     }
 

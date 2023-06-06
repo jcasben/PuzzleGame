@@ -11,9 +11,9 @@ import java.util.Random;
 
 public class PanelPartida extends JPanel {
 
-    public PanelPartida(int filas, int columnas) {
+    public PanelPartida(Imagen img) {
         setLayout(new BorderLayout());
-        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, new PanelSubImagen(filas,columnas), new FooterPanel());
+        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, new PanelSubImagen(img), new FooterPanel());
         jsp2.setEnabled(false);
         jsp2.setDividerLocation(675);
         add(jsp2);
