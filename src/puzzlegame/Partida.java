@@ -6,18 +6,25 @@ import puzzlegame.windows.components.SubImagen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Partida {
     private JTextField name = new JTextField();
-    private String playerName;
-    private JTextField horizontalDivs = new JTextField();
+    private final JTextField horizontalDivs = new JTextField();
+    private final JTextField verticalDivs = new JTextField();
     private int playerHDivs;
-    private JTextField verticalDivs = new JTextField();
     private int playerVDivs;
     private SubImagen[] subImagenes;
+    private String nombreUsuario;
+    private String fecha;
+    private boolean partidaGanada = false;
 
     public Partida() {
         newGameWindow();
+        DateFormat formater = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+        fecha = formater.format(new Date());
     }
 
     private void newGameWindow() {
@@ -61,7 +68,7 @@ public class Partida {
         bname = bHDivs = bVDivs = false;
 
         if(!name.getText().equals("")) {
-            playerName = name.getText();
+            nombreUsuario = name.getText();
             bname = true;
         }
 
@@ -77,9 +84,21 @@ public class Partida {
         if(!bname || !bHDivs || !bVDivs) {
             JOptionPane.showMessageDialog(null,message);
         } else {
-            System.out.println(playerName + "\n" + playerHDivs + "\n" + playerVDivs);
+            System.out.println(nombreUsuario + "\n" + playerHDivs + "\n" + playerVDivs);
             return true;
         }
         return false;
+    }
+
+    public int getPuntuacion() {
+        return partidaGanada ? (playerHDivs * playerVDivs) : 0;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getNombre() {
+        return nombreUsuario;
     }
 }
