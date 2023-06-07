@@ -1,8 +1,8 @@
 package puzzlegame;
 
-import puzzlegame.windows.components.Imagen;
+import puzzlegame.entidades.Imagen;
 import puzzlegame.windows.components.PanelContenidos;
-import puzzlegame.windows.components.SubImagen;
+import puzzlegame.entidades.SubImagen;
 
 import javax.swing.*;
 import java.awt.*;

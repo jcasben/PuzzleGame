@@ -1,6 +1,7 @@
 package puzzlegame.windows.components;
 
 import puzzlegame.Partida;
+import puzzlegame.entidades.Imagen;
 
 import javax.swing.*;
 import java.awt.*;

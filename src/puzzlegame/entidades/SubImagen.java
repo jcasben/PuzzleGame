@@ -1,4 +1,4 @@
-package puzzlegame.windows.components;
+package puzzlegame.entidades;
 
 import javax.swing.*;
 

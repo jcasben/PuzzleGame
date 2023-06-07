@@ -1,5 +1,7 @@
 package puzzlegame.windows.components;
 
+import puzzlegame.entidades.Imagen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;

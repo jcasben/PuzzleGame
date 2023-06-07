@@ -1,4 +1,4 @@
-package puzzlegame.windows.components;
+package puzzlegame.entidades;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,7 +16,7 @@ public class Imagen extends JPanel {
     private int contador = 0;
     private int filas, columnas;
     private Image img; //imagen sin la dimension generica
-    private SubImagen [] divisiones;
+    private SubImagen[] divisiones;
 
 
 
