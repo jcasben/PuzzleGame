@@ -13,7 +13,7 @@ public class FicheroPartidaIn {
 
     public FicheroPartidaIn() {
         try {
-            raf = new RandomAccessFile(new File("resources/paprtidas.dat"),"r");
+            raf = new RandomAccessFile(new File("resources/partidas.dat"),"r");
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
