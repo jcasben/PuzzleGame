@@ -1,4 +1,4 @@
-package puzzlegame.windows.components;
+package puzzlegame.ventana.components;
 
 import puzzlegame.io.FicheroPartidaIn;
 

@@ -1,7 +1,5 @@
 package puzzlegame.io;
 
-import puzzlegame.Partida;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

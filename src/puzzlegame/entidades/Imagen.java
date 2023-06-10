@@ -1,7 +1,5 @@
 package puzzlegame.entidades;
 
-import puzzlegame.windows.components.GestorRaton;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

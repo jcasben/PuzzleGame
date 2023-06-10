@@ -1,6 +1,6 @@
-package puzzlegame.windows.components;
+package puzzlegame.ventana.components;
 
-import puzzlegame.Partida;
+import puzzlegame.entidades.Partida;
 
 import javax.swing.*;
 import java.awt.*;

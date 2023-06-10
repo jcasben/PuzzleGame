@@ -1,10 +1,7 @@
-package puzzlegame;
+package puzzlegame.entidades;
 
-import puzzlegame.entidades.Imagen;
 import puzzlegame.io.FicheroPartidaOut;
-import puzzlegame.windows.components.PanelContenidos;
-import puzzlegame.entidades.SubImagen;
-import puzzlegame.windows.components.PanelPartida;
+import puzzlegame.ventana.components.PanelContenidos;
 
 import javax.swing.*;
 import java.awt.*;

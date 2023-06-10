@@ -1,15 +1,9 @@
-package puzzlegame.windows.components;
+package puzzlegame.ventana.components.relacionado_juego;
 
 import puzzlegame.entidades.Imagen;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.Random;
 
 public class PanelPartida extends JPanel {
 

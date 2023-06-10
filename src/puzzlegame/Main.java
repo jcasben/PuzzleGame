@@ -1,6 +1,6 @@
 package puzzlegame;
 
-import puzzlegame.windows.Ventana;
+import puzzlegame.ventana.Ventana;
 
 import java.awt.*;
 

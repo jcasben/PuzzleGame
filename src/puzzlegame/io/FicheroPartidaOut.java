@@ -1,6 +1,6 @@
 package puzzlegame.io;
 
-import puzzlegame.Partida;
+import puzzlegame.entidades.Partida;
 
 import java.io.File;
 import java.io.FileNotFoundException;
