@@ -1,6 +1,7 @@
 package puzzlegame.windows;
 
 import puzzlegame.Partida;
+import puzzlegame.entidades.Imagen;
 import puzzlegame.windows.components.PanelClasificacion;
 import puzzlegame.windows.components.PanelContenidos;
 
@@ -22,12 +23,13 @@ public class Ventana extends JFrame {
      * @param height alto de la ventana
      */
     private void initFrame(String name, int width, int height) {
+        setIconImage(new ImageIcon("resources/assets/icono.jpg").getImage());
         setTitle(name);
         setSize(new Dimension(width,height));
         setResizable(false);
         setVisible(true);
         setContentPane(PanelContenidos.getInstance());
-        initMenuBar();
+        setJMenuBar(initMenuBar());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -37,7 +39,13 @@ public class Ventana extends JFrame {
         JMenu menu = new JMenu("MENU");
 
         JMenuItem nuevaPartidaMenu = new JMenuItem("NUEVA PARTIDA");
-        nuevaPartidaMenu.addActionListener(e -> new Partida());
+        nuevaPartidaMenu.addActionListener(e -> {
+            if (Partida.partida != null) {
+                JOptionPane.showMessageDialog(null,"DEBES ACABAR LA PARTIDA PRIMERO");
+                return;
+            }
+            Partida.iniPartida();
+        });
         menu.add(nuevaPartidaMenu);
 
         JMenuItem clasificacionMenu = new JMenuItem("HISTORIAL GENERAL");

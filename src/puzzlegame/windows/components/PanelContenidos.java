@@ -49,19 +49,25 @@ public class PanelContenidos extends JPanel {
         // ---------------------------------------- Creación de los botones ----------------------------------------
         JButton nuevaPartidaIcono = new JButton();
         nuevaPartidaIcono.setIcon(new ImageIcon("resources/assets/icons/newGame.jpg"));
-        nuevaPartidaIcono.addActionListener(e -> new Partida());
+        nuevaPartidaIcono.addActionListener(e -> {
+            if (Partida.partida != null) {
+                JOptionPane.showMessageDialog(null,"DEBES ACABAR LA PARTIDA PRIMERO");
+                return;
+            }
+            Partida.iniPartida();
+        });
         nuevaPartidaIcono.setFocusPainted(false);
         iconosMenu.add(nuevaPartidaIcono);
 
         JButton clasificacionIcono = new JButton();
         clasificacionIcono.setIcon(new ImageIcon("resources/assets/icons/generalHist.jpg"));
-        clasificacionIcono.addActionListener(e -> jsp.setRightComponent(new PanelClasificacion(PanelClasificacion.CLASIFICACION)));
+        clasificacionIcono.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.CLASIFICACION));
         clasificacionIcono.setFocusPainted(false);
         iconosMenu.add(clasificacionIcono);
 
         JButton historialIcono = new JButton();
         historialIcono.setIcon(new ImageIcon("resources/assets/icons/selectiveHist.jpg"));
-        historialIcono.addActionListener(e -> jsp.setRightComponent(new PanelClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO)));
+        historialIcono.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO));
         historialIcono.setFocusPainted(false);
         iconosMenu.add(historialIcono);
 
@@ -90,8 +96,19 @@ public class PanelContenidos extends JPanel {
     }
 
     public void cambiarAClasificacion(int mode) {
-        jsp.setRightComponent(new PanelClasificacion(mode));
-        jsp.setDividerLocation(180);
+        String nombreBuscado = "";
+        if (mode == PanelClasificacion.HISTORIAL_SELECTIVO){
+            nombreBuscado = JOptionPane.showInputDialog(
+                    null,
+                    "INTRODUCE EL NOMBRE DEL JUGADOR BUSCADO"
+            );
+        }
+        if (nombreBuscado != null){
+            jsp.setRightComponent(new PanelClasificacion(mode, nombreBuscado));
+            jsp.setDividerLocation(180);
+        } else {
+            PanelContenidos.getInstance().cambiarAInicio();
+        }
     }
 
     public void cambiarAInicio() {

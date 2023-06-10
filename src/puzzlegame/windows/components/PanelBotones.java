@@ -15,7 +15,13 @@ public class PanelBotones extends JPanel {
         setLayout(new GridLayout(4,1));
 
         JButton nuevaPartidaBoton = new JButton("NUEVA PARTIDA");
-        nuevaPartidaBoton.addActionListener(e -> new Partida());
+        nuevaPartidaBoton.addActionListener(e -> {
+            if (Partida.partida != null) {
+                JOptionPane.showMessageDialog(null,"DEBES ACABAR LA PARTIDA PRIMERO");
+                return;
+            }
+            Partida.iniPartida();
+        });
         nuevaPartidaBoton.setBackground(Color.DARK_GRAY);
         nuevaPartidaBoton.setForeground(Color.WHITE);
         nuevaPartidaBoton.setFocusPainted(false);

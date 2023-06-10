@@ -13,14 +13,15 @@ public class FicheroPartidaIn {
 
     public FicheroPartidaIn() {
         try {
-            raf = new RandomAccessFile(new File("resources/partidas.dat"),"r");
+            raf = new RandomAccessFile(new File("resources/resultados.dat"),"r");
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
     }
 
     public String leerPartidas() {
-        final int LONGREG = 2 * (2 * MAXLONGSTRING) + 4 * 1;
+        //El +1 es porque la fecha  justo es un string de 16 caracteres
+        final int LONGREG = 2 * ((2 * MAXLONGSTRING) + 1) + 4 * 1;
         String s = "";
         try {
             long numReg = raf.length() / LONGREG;
@@ -32,7 +33,7 @@ public class FicheroPartidaIn {
                     nombre += raf.readChar();
                 }
 
-                for(int i = 0; i < MAXLONGSTRING; i++) {
+                for(int i = 0; i < MAXLONGSTRING +1; i++) {
                     fecha += raf.readChar();
                 }
 
@@ -52,7 +53,8 @@ public class FicheroPartidaIn {
         final int LONGREG = 2 * (2 * MAXLONGSTRING) + 4 * 1;
 
         if (nombreBuscado.length() < MAXLONGSTRING) {
-            for (int i = 0; i < MAXLONGSTRING - nombreBuscado.length(); i++) {
+            int max = MAXLONGSTRING - nombreBuscado.length();
+            for (int i = 0; i < max; i++) {
                 nombreBuscado += " ";
             }
         } else {
@@ -69,7 +71,7 @@ public class FicheroPartidaIn {
                     nombre += raf.readChar();
                 }
 
-                for(int i = 0; i < MAXLONGSTRING; i++) {
+                for(int i = 0; i < MAXLONGSTRING +1; i++) {
                     fecha += raf.readChar();
                 }
 

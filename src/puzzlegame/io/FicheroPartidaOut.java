@@ -16,7 +16,7 @@ public class FicheroPartidaOut {
 
     public FicheroPartidaOut() {
         try {
-            raf = new RandomAccessFile(new File("resources/partidas.dat"),"rw");
+            raf = new RandomAccessFile(new File("resources/resultados.dat"),"rw");
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
@@ -31,7 +31,8 @@ public class FicheroPartidaOut {
             }
 
             if (nombre.length() < MAXLONGNOMBRE) {
-                for (int i = 0; i < MAXLONGNOMBRE - nombre.length(); i++) {
+                int maxLength = MAXLONGNOMBRE - nombre.length();
+                for (int i = 0; i < maxLength; i++) {
                     nombre += " ";
                 }
             } else {
