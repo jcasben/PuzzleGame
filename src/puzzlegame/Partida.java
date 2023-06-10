@@ -3,6 +3,7 @@ package puzzlegame;
 import puzzlegame.entidades.Imagen;
 import puzzlegame.windows.components.PanelContenidos;
 import puzzlegame.entidades.SubImagen;
+import puzzlegame.windows.components.PanelPartida;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,12 +54,15 @@ public class Partida {
             if(savePlayerInput()) {
                 askingFrame.dispose();
                 Imagen puzzlePartida = new Imagen(playerHDivs,playerVDivs); //crear imagen
-                subImagenes = puzzlePartida.getDivisiones();
                 PanelContenidos.getInstance().cambiarAPartida(puzzlePartida); //mostrar imagen
             }
         });
         button.add(b);
         askingFrame.add(button, BorderLayout.SOUTH);
+    }
+
+    private void jugar(PanelPartida pp) {
+
     }
 
     private boolean savePlayerInput() {

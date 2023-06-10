@@ -12,6 +12,7 @@ import java.awt.*;
 public class PanelContenidos extends JPanel {
     private JToolBar iconosMenu;
     private JSplitPane jsp;
+    private Imagen imagenPartida;
 
     private static final PanelContenidos panelContenidos = new PanelContenidos();
 
@@ -79,7 +80,12 @@ public class PanelContenidos extends JPanel {
     }
 
     public void cambiarAPartida(Imagen img) {
-        jsp.setRightComponent(new PanelPartida(img));
+        imagenPartida = img;
+        jsp.setRightComponent(new PanelPartida(imagenPartida));
+        jsp.setDividerLocation(180);
+    }
+    public void cambiarASolucion(boolean esSol) {
+        jsp.setRightComponent(new PanelSolucion(imagenPartida, esSol));
         jsp.setDividerLocation(180);
     }
 

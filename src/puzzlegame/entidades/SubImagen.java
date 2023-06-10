@@ -1,32 +1,26 @@
 package puzzlegame.entidades;
 
 import javax.swing.*;
+import java.awt.event.MouseListener;
 
 public class SubImagen {
-    private ImageIcon subimagen;
-    private int posicionCorrecta, posicionActual;
+    private int pos;
     private JLabel JLabelSubimagen;
+
+
     public SubImagen (ImageIcon img, int pos){
+
         JLabelSubimagen =  new JLabel(img);
         JLabelSubimagen.setBorder(null);
-        subimagen = img;
-        posicionCorrecta = pos;
-        posicionActual = pos;
+        JLabelSubimagen.setName(String.valueOf(pos));
+        this.pos = pos;
     }
-
-    public int getPosicionCorrecta(){
-        return posicionCorrecta;
-    }
-    public int getPosicionActual(){ return posicionActual; }
-    public ImageIcon getSubimagen(){
-        return subimagen;
-    }
-    public JLabel getJLabelSubimagen(){
+    public JLabel getSubimagen(MouseListener ml){
+        JLabelSubimagen.addMouseListener(ml);
         return JLabelSubimagen;
     }
-    
-    public void setPosicionActual(int posA) {
-        posicionActual = posA;
+    public int getPos() {
+        return pos;
     }
 
 }

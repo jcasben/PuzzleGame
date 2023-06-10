@@ -1,16 +1,15 @@
 package puzzlegame.windows.components;
 
-import puzzlegame.entidades.Imagen;
-
+import puzzlegame.entidades.SubImagen;
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class PanelSubImagen extends JPanel {
-    public PanelSubImagen(Imagen img) {
-        setLayout(new GridLayout(img.getFilas(),img.getColumnas()));
-        for (int i = 0; i < img.getDivisiones().length; i++) {
-            add(img.getDivisiones()[i].getJLabelSubimagen());
+    public PanelSubImagen(SubImagen [] x, int filas, int columnas) {
+        setLayout(new GridLayout(filas,columnas,8,8));
+        GestorRaton ml = new GestorRaton(x);
+        for (SubImagen sub : x) {
+            add(sub.getSubimagen(ml));
         }
     }
 }

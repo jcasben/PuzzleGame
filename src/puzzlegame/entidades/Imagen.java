@@ -1,5 +1,7 @@
 package puzzlegame.entidades;
 
+import puzzlegame.windows.components.GestorRaton;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +13,10 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Imagen extends JPanel {
-    private final int ANCHO = 1000;
+    private final int ANCHO = 1150;
     private final int ALTO = 700;
-    private int contador = 0;
     private int filas, columnas;
-    private Image img; //imagen sin la dimension generica
+    private Image img;
     private SubImagen[] divisiones;
 
 
@@ -35,11 +36,13 @@ public class Imagen extends JPanel {
 
     private void dividir(int filas, int columnas){
         divisiones = new SubImagen[filas*columnas];
+        int contador = 0;
         for (int i = 0; i < filas ; i++) {
             for (int j = 0; j < columnas; j++) {
                 Image imagen = createImage(new FilteredImageSource(img.getSource(),
                         new CropImageFilter(j*(ANCHO/columnas),i*(ALTO/filas),ANCHO/columnas,ALTO/filas)));
-                divisiones[contador++] = new SubImagen(new ImageIcon(imagen), contador);
+                divisiones[contador] = new SubImagen(new ImageIcon(imagen), contador);
+                contador++;
             }
         }
         desordenarSubImag(divisiones, filas,columnas);
@@ -74,7 +77,7 @@ public class Imagen extends JPanel {
         return nombre;
 
     }
-
+    public Image getImg() { return img; }
     public SubImagen [] getDivisiones(){ return divisiones; }
     public int getFilas() { return filas; }
     public int getColumnas() { return columnas; }
