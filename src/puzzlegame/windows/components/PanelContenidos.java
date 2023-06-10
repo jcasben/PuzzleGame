@@ -54,12 +54,13 @@ public class PanelContenidos extends JPanel {
 
         JButton clasificacionIcono = new JButton();
         clasificacionIcono.setIcon(new ImageIcon("resources/assets/icons/generalHist.jpg"));
-        clasificacionIcono.addActionListener(e -> jsp.setRightComponent(new HistorialPanel()));
+        clasificacionIcono.addActionListener(e -> jsp.setRightComponent(new PanelClasificacion(PanelClasificacion.CLASIFICACION)));
         clasificacionIcono.setFocusPainted(false);
         iconosMenu.add(clasificacionIcono);
 
         JButton historialIcono = new JButton();
         historialIcono.setIcon(new ImageIcon("resources/assets/icons/selectiveHist.jpg"));
+        historialIcono.addActionListener(e -> jsp.setRightComponent(new PanelClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO)));
         historialIcono.setFocusPainted(false);
         iconosMenu.add(historialIcono);
 
@@ -82,8 +83,8 @@ public class PanelContenidos extends JPanel {
         jsp.setDividerLocation(180);
     }
 
-    public void cambiarAClasificacion() {
-        jsp.setRightComponent(new HistorialPanel());
+    public void cambiarAClasificacion(int mode) {
+        jsp.setRightComponent(new PanelClasificacion(mode));
         jsp.setDividerLocation(180);
     }
 

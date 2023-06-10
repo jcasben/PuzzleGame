@@ -1,6 +1,7 @@
 package puzzlegame.windows;
 
 import puzzlegame.Partida;
+import puzzlegame.windows.components.PanelClasificacion;
 import puzzlegame.windows.components.PanelContenidos;
 
 import javax.swing.*;
@@ -35,23 +36,24 @@ public class Ventana extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("MENU");
 
-        JMenuItem mNewGame = new JMenuItem("NUEVA PARTIDA");
-        mNewGame.addActionListener(e -> new Partida());
-        menu.add(mNewGame);
+        JMenuItem nuevaPartidaMenu = new JMenuItem("NUEVA PARTIDA");
+        nuevaPartidaMenu.addActionListener(e -> new Partida());
+        menu.add(nuevaPartidaMenu);
 
-        JMenuItem mClasif = new JMenuItem("HISTORIAL GENERAL");
-        mClasif.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion());
-        menu.add(mClasif);
+        JMenuItem clasificacionMenu = new JMenuItem("HISTORIAL GENERAL");
+        clasificacionMenu.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.CLASIFICACION));
+        menu.add(clasificacionMenu);
 
-        JMenuItem mHistory = new JMenuItem("HISTORIAL");
-        menu.add(mHistory);
+        JMenuItem historialMenu = new JMenuItem("HISTORIAL");
+        historialMenu.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO));
+        menu.add(historialMenu);
 
-        JMenuItem mChangeDir = new JMenuItem("CAMBIAR DIRECTORIO DE IMÁGENES");
-        menu.add(mChangeDir);
+        JMenuItem cambiarDirectorioMenu = new JMenuItem("CAMBIAR DIRECTORIO DE IMÁGENES");
+        menu.add(cambiarDirectorioMenu);
 
-        JMenuItem mExit = new JMenuItem("SALIR");
-        mExit.addActionListener(e -> System.exit(0));
-        menu.add(mExit);
+        JMenuItem salirMenu = new JMenuItem("SALIR");
+        salirMenu.addActionListener(e -> System.exit(0));
+        menu.add(salirMenu);
 
         menuBar.add(menu);
 

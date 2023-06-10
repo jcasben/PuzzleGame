@@ -22,13 +22,14 @@ public class PanelBotones extends JPanel {
         add(nuevaPartidaBoton);
 
         JButton clasificacionBoton = new JButton("CLASIFICACIÓN GENERAL");
-        clasificacionBoton.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion());
+        clasificacionBoton.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.CLASIFICACION));
         clasificacionBoton.setBackground(Color.DARK_GRAY);
         clasificacionBoton.setForeground(Color.WHITE);
         clasificacionBoton.setFocusPainted(false);
         add(clasificacionBoton);
 
         JButton historialBoton = new JButton("HISTORIAL");
+        historialBoton.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO));
         historialBoton.setBackground(Color.DARK_GRAY);
         historialBoton.setForeground(Color.WHITE);
         historialBoton.setFocusPainted(false);
