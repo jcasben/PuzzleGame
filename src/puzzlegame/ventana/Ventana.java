@@ -1,14 +1,16 @@
 package puzzlegame.ventana;
 
-import puzzlegame.entidades.Partida;
-import puzzlegame.ventana.components.PanelClasificacion;
+import puzzlegame.gestores.GestorEventos;
 import puzzlegame.ventana.components.PanelContenidos;
 
 import javax.swing.*;
 import java.awt.*;
 
+import static puzzlegame.ventana.components.PanelClasificacion.*;
+
 /**
  * @author jcasb
+ * @author Marc Link
  */
 public class Ventana extends JFrame {
     public Ventana() {
@@ -38,24 +40,19 @@ public class Ventana extends JFrame {
         JMenu menu = new JMenu("MENU");
 
         JMenuItem nuevaPartidaMenu = new JMenuItem("NUEVA PARTIDA");
-        nuevaPartidaMenu.addActionListener(e -> {
-            if (Partida.partida != null) {
-                JOptionPane.showMessageDialog(null,"DEBES ACABAR LA PARTIDA PRIMERO");
-                return;
-            }
-            Partida.iniPartida();
-        });
+        nuevaPartidaMenu.addActionListener(new GestorEventos().nuevaPartida());
         menu.add(nuevaPartidaMenu);
 
-        JMenuItem clasificacionMenu = new JMenuItem("HISTORIAL GENERAL");
-        clasificacionMenu.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.CLASIFICACION));
+        JMenuItem clasificacionMenu = new JMenuItem("CLASIFICACIÓN");
+        clasificacionMenu.addActionListener(new GestorEventos().clasificacion(CLASIFICACION));
         menu.add(clasificacionMenu);
 
-        JMenuItem historialMenu = new JMenuItem("HISTORIAL");
-        historialMenu.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO));
+        JMenuItem historialMenu = new JMenuItem("HISTORIAL SELECTIVO");
+        historialMenu.addActionListener(new GestorEventos().clasificacion(HISTORIAL_SELECTIVO));
         menu.add(historialMenu);
 
         JMenuItem cambiarDirectorioMenu = new JMenuItem("CAMBIAR DIRECTORIO DE IMÁGENES");
+        cambiarDirectorioMenu.addActionListener(new GestorEventos().cambiarDirectorio());
         menu.add(cambiarDirectorioMenu);
 
         JMenuItem salirMenu = new JMenuItem("SALIR");
