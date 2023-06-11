@@ -5,6 +5,10 @@ import puzzlegame.entidades.SubImagen;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Marc Link
+ * @author jcasben
+ */
 public class PanelSubImagen extends JPanel {
     public PanelSubImagen(SubImagen [] x, int filas, int columnas) {
         setLayout(new GridLayout(filas,columnas,8,8));
