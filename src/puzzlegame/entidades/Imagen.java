@@ -8,30 +8,58 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @author Marc Link
+ * @author jcasben
+ * Clase encargada de coger imágenes de dentro de un directorio y dividirlas.
+ */
 public class Imagen extends JPanel {
     private final int ANCHO = 1150;
     private final int ALTO = 700;
     private int filas, columnas;
     private Image img;
     private SubImagen[] divisiones;
+    //Path predeterminado para el directorio de imágenes.
+    public static String path = "resources/assets/puzzles/";
 
-
-
+    /**
+     * Crea una nueva imagen dividida en partes.
+     * @param filas divisiones horizontales.
+     * @param columnas divisiones verticales.
+     */
     public Imagen(int filas, int columnas){
         this.filas = filas;
         this.columnas = columnas;
         BufferedImage imgSinEscala;
+        String imga = escogerImagenAleatoria();
+        System.out.println(path);
         try{
-            imgSinEscala = ImageIO.read(new File("resources/assets/puzzles/" + nombreImagen()  + ".jpg"));
-            img = imgSinEscala.getScaledInstance(ANCHO,ALTO,Image.SCALE_DEFAULT);
+            /*
+             * Si el método escogerImagenAleatoria() devuelve null, se volverá al path predeterminado de imágenes y se
+             * jugará la partida con una de las imágenes extraídas de ese directorio.
+             */
+            if (imga == null) {
+                JOptionPane.showMessageDialog(null, "NO SE HA PODIDO OBTENER NINGUNA IMAGEN \n" +
+                        "SE HA VUELTO AL DIRECTORIO PREDETERMINADO");
+                path = "resources/assets/puzzles/";
+                imga = escogerImagenAleatoria();
+            }
+            imgSinEscala = ImageIO.read(new File(path  + "\\" + imga));
+            img = imgSinEscala.getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT);
         }catch (IOException e){
             e.printStackTrace();
         }
         dividir(filas,columnas);
     }
 
+    /**
+     * Divide las imagenes.
+     * @param filas
+     * @param columnas
+     */
     private void dividir(int filas, int columnas){
         divisiones = new SubImagen[filas*columnas];
         int contador = 0;
@@ -57,24 +85,37 @@ public class Imagen extends JPanel {
         }
     }
 
-    private String nombreImagen() {
-        Random ran = new Random();
-        String nombre  = null;
-        int i = ran.nextInt(3);
-        switch (i){
-            case 0:
-                nombre = "911";
-                break;
-            case 1:
-                nombre = "elefante";
-                break;
-            case 2:
-                nombre = "mazda-rx7";
-                break;
-        }
-        return nombre;
+    /**
+     * Realizado un listado de los ficheros que están dentro del path actual, guarda los que son imágenes y devuelve
+     * una aleatoria.
+     * @return nombre de la imagen aleatoria de dentro del directorio.
+     */
+    private String escogerImagenAleatoria() {
+        ArrayList<String> imagenes = new ArrayList<>();
+        File [] archivos = new File(path).listFiles(File::isFile);
 
+        if(archivos != null) {
+            for (File f : archivos) {
+                //Comprobamos si la extensión pertenece al de una imagen.
+                if ((f != null) && (f.getName().endsWith(".jpg") ||
+                        f.getName().endsWith(".png") ||
+                        f.getName().endsWith(".gif") ||
+                        f.getName().endsWith(".jpeg"))) {
+
+                    imagenes.add(f.getName());
+                }
+            }
+        }
+        Random ran = new Random();
+
+        if (imagenes.size() > 0) {
+            int i = ran.nextInt(imagenes.size());
+            return imagenes.get(i);
+        }
+        //Si no hay imagenes en el fichero, devuelve null.
+        return null;
     }
+
     public Image getImg() { return img; }
     public SubImagen [] getDivisiones(){ return divisiones; }
     public int getFilas() { return filas; }
