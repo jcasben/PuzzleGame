@@ -40,7 +40,7 @@ public class Ventana extends JFrame {
      * Inicializa un JMenuBar y le añade las opciones necesarias.
      * @return objeto {@link JMenuBar}.
      */
-    public JMenuBar initMenuBar() {
+    private JMenuBar initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("MENU");
 
