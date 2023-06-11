@@ -2,25 +2,30 @@ package puzzlegame.ventana.components;
 
 import puzzlegame.entidades.Partida;
 import puzzlegame.entidades.Imagen;
+import puzzlegame.gestores.GestorEventos;
 import puzzlegame.ventana.components.relacionado_juego.PanelPartida;
 import puzzlegame.ventana.components.relacionado_juego.PanelSolucion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+
+import static puzzlegame.ventana.components.PanelClasificacion.*;
 
 /**
  * @author jcasb
+ * @author Marc Link
  */
 public class PanelContenidos extends JPanel {
     private JToolBar iconosMenu;
-    private JSplitPane jsp;
+    private final JSplitPane jsp;
     private Imagen imagenPartida;
+    private final String pathIconos = "resources/assets/icons/";
 
     private static final PanelContenidos panelContenidos = new PanelContenidos();
 
     public PanelContenidos() {
         setLayout(new BorderLayout());
-        this.jsp = jsp;
 
         //Declaración de JSplitPanes
         this.jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
@@ -49,42 +54,40 @@ public class PanelContenidos extends JPanel {
         iconosMenu = new JToolBar();
         iconosMenu.setFloatable(false);
         // ---------------------------------------- Creación de los botones ----------------------------------------
-        JButton nuevaPartidaIcono = new JButton();
-        nuevaPartidaIcono.setIcon(new ImageIcon("resources/assets/icons/newGame.jpg"));
-        nuevaPartidaIcono.addActionListener(e -> {
-            if (Partida.partida != null) {
-                JOptionPane.showMessageDialog(null,"DEBES ACABAR LA PARTIDA PRIMERO");
-                return;
-            }
-            Partida.iniPartida();
-        });
-        nuevaPartidaIcono.setFocusPainted(false);
-        iconosMenu.add(nuevaPartidaIcono);
+        addBoton(
+                new ImageIcon(pathIconos + "newGame.jpg"),
+                new GestorEventos().nuevaPartida()
+        );
 
-        JButton clasificacionIcono = new JButton();
-        clasificacionIcono.setIcon(new ImageIcon("resources/assets/icons/generalHist.jpg"));
-        clasificacionIcono.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.CLASIFICACION));
-        clasificacionIcono.setFocusPainted(false);
-        iconosMenu.add(clasificacionIcono);
+        addBoton(
+                new ImageIcon(pathIconos + "generalHist.jpg"),
+                new GestorEventos().clasificacion(CLASIFICACION)
+        );
 
-        JButton historialIcono = new JButton();
-        historialIcono.setIcon(new ImageIcon("resources/assets/icons/selectiveHist.jpg"));
-        historialIcono.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO));
-        historialIcono.setFocusPainted(false);
-        iconosMenu.add(historialIcono);
+        addBoton(
+                new ImageIcon(pathIconos + "selectiveHist.jpg"),
+                new GestorEventos().clasificacion(HISTORIAL_SELECTIVO)
+        );
 
-        JButton cambiarDirectorioIcono = new JButton();
-        cambiarDirectorioIcono.setIcon(new ImageIcon("resources/assets/icons/changeDir.jpg"));
-        cambiarDirectorioIcono.setFocusPainted(false);
-        iconosMenu.add(cambiarDirectorioIcono);
+        addBoton(
+                new ImageIcon(pathIconos + "changeDir.jpg"),
+                new GestorEventos().cambiarDirectorio()
+        );
 
-        JButton salirIcono = new JButton();
-        salirIcono.setIcon(new ImageIcon("resources/assets/icons/exit.jpg"));
-        salirIcono.setFocusPainted(false);
-        salirIcono.addActionListener(e -> System.exit(0));
-        iconosMenu.add(salirIcono);
+        addBoton(
+                new ImageIcon(pathIconos + "exit.jpg"),
+                e -> System.exit(0)
+        );
 
         return iconosMenu;
+    }
+
+    private void addBoton(ImageIcon imagen, ActionListener e) {
+        JButton boton = new JButton();
+        boton.setIcon(imagen);
+        boton.setFocusPainted(false);
+        boton.addActionListener(e);
+        iconosMenu.add(boton);
     }
 
     public void cambiarAPartida(Imagen img) {
