@@ -27,7 +27,7 @@ public class PanelClasificacion extends JPanel {
         JTextArea jta = new JTextArea();
         if (mode == CLASIFICACION) {
             jta.setText(new FicheroPartidaIn().leerPartidas());
-        } else if (mode == 1) {
+        } else if (mode == HISTORIAL_SELECTIVO) {
             jta.setText(new FicheroPartidaIn().leerSelectivo(nombreBuscado));
         }
         jta.setFont(new Font("Monospaced",Font.BOLD,25));
