@@ -60,7 +60,6 @@ public class PanelTemporizador extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (tick == maxTicks) PanelContenidos.getInstance().cambiarASolucion(false);
-        System.out.println(tick + " " + maxTicks + " " + 100/maxTicks);
 
         if (tick == 1) progressBar.setValue(progressBar.getValue() + (100 % maxTicks));
 

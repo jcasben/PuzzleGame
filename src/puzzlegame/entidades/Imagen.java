@@ -35,7 +35,6 @@ public class Imagen extends JPanel {
         this.columnas = columnas;
         BufferedImage imgSinEscala;
         String imga = escogerImagenAleatoria();
-        System.out.println(path);
         try{
             /*
              * Si el método escogerImagenAleatoria() devuelve null, se volverá al path predeterminado de imágenes y se

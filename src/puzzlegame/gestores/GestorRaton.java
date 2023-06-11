@@ -41,8 +41,6 @@ public class GestorRaton extends MouseAdapter {
         JLabel segundoClcik = ((JLabel) e.getComponent());
         int posprimer = (Integer.parseInt(primerClick.getName()));
         int possegund = (Integer.parseInt(segundoClcik.getName()));
-        System.out.println(posprimer + "primer");
-        System.out.println(possegund + "segundo");
 
         aux = piezas[posprimer];
         piezas[posprimer] = piezas[possegund];

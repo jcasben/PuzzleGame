@@ -117,7 +117,6 @@ public class Partida {
         if(!bname || !bHDivs || !bVDivs) {
             JOptionPane.showMessageDialog(null,mensaje);
         } else {
-            System.out.println(nombreUsuario + "\n" + divisionesHorizontales + "\n" + divisionesVerticales);
             return true;
         }
         return false;
