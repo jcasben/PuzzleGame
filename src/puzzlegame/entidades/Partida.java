@@ -9,20 +9,24 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author jcasben
+ * @author Marc Link
+ */
 public class Partida {
     public static Partida partida;
-    private JTextField name = new JTextField();
-    private final JTextField horizontalDivs = new JTextField();
-    private final JTextField verticalDivs = new JTextField();
-    private int playerHDivs;
-    private int playerVDivs;
+    private final JTextField name = new JTextField();
+    private final JTextField campoDivisionesHorizontales = new JTextField();
+    private final JTextField campoDivisionesVerticales = new JTextField();
+    private int divisionesHorizontales;
+    private int divisionesVerticales;
     private String nombreUsuario;
-    private String fecha;
+    private final String fecha;
     private boolean partidaGanada = false;
 
 
     public Partida() {
-        newGameWindow();
+        nuevaVentanaPrepartida();
         DateFormat formater = new SimpleDateFormat("HH:mm dd/MM/yyyy");
         fecha = formater.format(new Date());
     }
@@ -31,7 +35,7 @@ public class Partida {
         partida = new Partida();
     }
 
-    private void newGameWindow() {
+    private void nuevaVentanaPrepartida() {
         JFrame askingFrame = new JFrame("INTRODUCCIÓN DATOS");
         askingFrame.setBounds(300,350,700,150);
         askingFrame.setLayout(new BorderLayout());
@@ -49,11 +53,11 @@ public class Partida {
         JLabel nsh = new JLabel("NÚMERO DE SUBDIVISIONES HORIZONTALES");
         nsh.setForeground(Color.WHITE);
         textFields.add(nsh);
-        textFields.add(horizontalDivs);
+        textFields.add(campoDivisionesHorizontales);
         JLabel nsv = new JLabel("NÚMERO DE SUBDIVISIONES VERTICALES");
         nsv.setForeground(Color.WHITE);
         textFields.add(nsv);
-        textFields.add(verticalDivs);
+        textFields.add(campoDivisionesVerticales);
         askingFrame.add(textFields, BorderLayout.CENTER);
 
         JPanel button = new JPanel();
@@ -61,9 +65,9 @@ public class Partida {
         button.setLayout(new GridLayout(1,1));
         JButton b = new JButton("CONFIRMAR");
         b.addActionListener(e -> {
-            if(savePlayerInput()) {
+            if(guardarInputJugador()) {
                 askingFrame.dispose();
-                Imagen puzzlePartida = new Imagen(playerHDivs,playerVDivs); //crear imagen
+                Imagen puzzlePartida = new Imagen(divisionesHorizontales, divisionesVerticales); //crear imagen
                 PanelContenidos.getInstance().cambiarAPartida(puzzlePartida); //mostrar juego puzzle
             }
         });
@@ -71,9 +75,10 @@ public class Partida {
         askingFrame.add(button, BorderLayout.SOUTH);
     }
 
-    private boolean savePlayerInput() {
-        String message = "HAY ERRORES EN LOS DATOS INTRODUCIDOS. POR FAVOR, CORRIGELOS.\n\nRECUERDA QUE EL " +
-                "NOMBRE NO SE PUEDE DEJAR EN BLANCO Y QUE LAS \nSUBDIVISIONES TIENEN QUE SER NÚMEROS ENTEROS MAYORES QUE 1";
+    private boolean guardarInputJugador() {
+        String message = "HAY ERRORES EN LOS DATOS INTRODUCIDOS. POR FAVOR, CORRIGELOS.\n" +
+                        "\nRECUERDA QUE EL NOMBRE NO SE PUEDE DEJAR EN BLANCO Y QUE LAS " +
+                        "\nSUBDIVISIONES TIENEN QUE SER NÚMEROS ENTEROS MAYORES QUE 1";
         boolean bname, bHDivs, bVDivs;
         bname = bHDivs = bVDivs = false;
 
@@ -83,12 +88,12 @@ public class Partida {
         }
 
         try {
-            playerHDivs = Integer.parseInt(horizontalDivs.getText());
-            if(playerHDivs > 1){
+            divisionesHorizontales = Integer.parseInt(campoDivisionesHorizontales.getText());
+            if(divisionesHorizontales > 1){
                 bHDivs = true;
             }
-            playerVDivs = Integer.parseInt(verticalDivs.getText());
-            if(playerVDivs > 1){
+            divisionesVerticales = Integer.parseInt(campoDivisionesVerticales.getText());
+            if(divisionesVerticales > 1){
                 bVDivs = true;
             }
         } catch(NumberFormatException nfe) {
@@ -98,7 +103,7 @@ public class Partida {
         if(!bname || !bHDivs || !bVDivs) {
             JOptionPane.showMessageDialog(null,message);
         } else {
-            System.out.println(nombreUsuario + "\n" + playerHDivs + "\n" + playerVDivs);
+            System.out.println(nombreUsuario + "\n" + divisionesHorizontales + "\n" + divisionesVerticales);
             return true;
         }
         return false;
@@ -111,7 +116,7 @@ public class Partida {
     }
 
     public int getPuntuacion() {
-        return partidaGanada ? (playerHDivs * playerVDivs) : 0;
+        return partidaGanada ? (divisionesHorizontales * divisionesVerticales) : 0;
     }
 
     public String getFecha() {
