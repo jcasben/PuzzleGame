@@ -1,53 +1,53 @@
 package puzzlegame.ventana.components;
 
 import puzzlegame.entidades.Partida;
+import puzzlegame.gestores.GestorEventos;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+
+import static puzzlegame.ventana.components.PanelClasificacion.CLASIFICACION;
+import static puzzlegame.ventana.components.PanelClasificacion.HISTORIAL_SELECTIVO;
 
 /**
  * @author jcasb
+ * @author Marc Link
  */
 public class PanelBotones extends JPanel {
-
 
     public PanelBotones() {
         setLayout(new GridLayout(4,1));
 
-        JButton nuevaPartidaBoton = new JButton("NUEVA PARTIDA");
-        nuevaPartidaBoton.addActionListener(e -> {
-            if (Partida.partida != null) {
-                JOptionPane.showMessageDialog(null,"DEBES ACABAR LA PARTIDA PRIMERO");
-                return;
-            }
-            Partida.iniPartida();
-        });
-        nuevaPartidaBoton.setBackground(Color.DARK_GRAY);
-        nuevaPartidaBoton.setForeground(Color.WHITE);
-        nuevaPartidaBoton.setFocusPainted(false);
-        add(nuevaPartidaBoton);
+        addBoton(
+                "NUEVA PARTIDA",
+                new GestorEventos().nuevaPartida()
+        );
 
-        JButton clasificacionBoton = new JButton("CLASIFICACIÓN GENERAL");
-        clasificacionBoton.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.CLASIFICACION));
-        clasificacionBoton.setBackground(Color.DARK_GRAY);
-        clasificacionBoton.setForeground(Color.WHITE);
-        clasificacionBoton.setFocusPainted(false);
-        add(clasificacionBoton);
+        addBoton(
+                "CLASIFICACIÓN GENERAL",
+                new GestorEventos().clasificacion(CLASIFICACION)
+        );
 
-        JButton historialBoton = new JButton("HISTORIAL");
-        historialBoton.addActionListener(e -> PanelContenidos.getInstance().cambiarAClasificacion(PanelClasificacion.HISTORIAL_SELECTIVO));
-        historialBoton.setBackground(Color.DARK_GRAY);
-        historialBoton.setForeground(Color.WHITE);
-        historialBoton.setFocusPainted(false);
-        add(historialBoton);
+        addBoton(
+                "HISTORIAL",
+                new GestorEventos().clasificacion(HISTORIAL_SELECTIVO)
+        );
 
-        JButton salirBoton = new JButton("SALIR");
-        salirBoton.setBackground(Color.DARK_GRAY);
-        salirBoton.setForeground(Color.WHITE);
-        salirBoton.setFocusPainted(false);
-        salirBoton.addActionListener(e -> System.exit(0));
-        add(salirBoton);
+        addBoton(
+                "SALIR",
+                e -> System.exit(0)
+        );
 
         setVisible(true);
+    }
+
+    private void addBoton(String texto, ActionListener e) {
+        JButton boton = new JButton(texto);
+        boton.setBackground(Color.DARK_GRAY);
+        boton.setForeground(Color.WHITE);
+        boton.setFocusPainted(false);
+        boton.addActionListener(e);
+        add(boton);
     }
 }
