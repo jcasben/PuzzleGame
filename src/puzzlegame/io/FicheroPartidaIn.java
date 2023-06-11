@@ -5,10 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * @author jcasben
+ * @author Marc Link
+ */
 public class FicheroPartidaIn {
     private RandomAccessFile raf;
     private final int MAXLONGSTRING = 15;
 
+    /**
+     * Inicia la instancia del RandomAccessFile en modo lectura.
+     */
     public FicheroPartidaIn() {
         try {
             raf = new RandomAccessFile(new File("resources/resultados.dat"),"r");
@@ -17,6 +24,10 @@ public class FicheroPartidaIn {
         }
     }
 
+    /**
+     * Lee todas las partidas que están registradas en el fichero.
+     * @return un String que contiene todos los registros del fichero.
+     */
     public String leerPartidas() {
         //El +1 es porque la fecha  justo es un string de 16 caracteres
         final int LONGREG = 2 * ((2 * MAXLONGSTRING) + 1) + 4 * 1;
@@ -46,6 +57,11 @@ public class FicheroPartidaIn {
         return s;
     }
 
+    /**
+     * Lee todos los registros del fichero y selecciona los que tengan el nombre igual al pasado por parámetro.
+     * @param nombreBuscado nombre a buscar entre los registros.
+     * @return String con los ficheros encontrados.
+     */
     public String leerSelectivo(String nombreBuscado) {
         String s = "";
         final int LONGREG = 2 * (2 * MAXLONGSTRING) + 4 * 1;

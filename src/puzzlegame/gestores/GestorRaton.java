@@ -7,25 +7,36 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
+/**
+ * @author Marc Link
+ * @author jcasben
+ * Gestiona los eventos de ratón.
+ */
 public class GestorRaton extends MouseAdapter {
-    private SubImagen [] piezas;
+    private final SubImagen [] piezas;
     private JLabel primerClick;
+
+    /**
+     * Guarda las diferentes subimagenes para tratarlas.
+     * @param piezas conjunto de subimagenes del puzzle.
+     */
     public GestorRaton (SubImagen [] piezas) {
         this.piezas = piezas;
-        System.out.println(Arrays.toString(piezas));
-
     }
+
+    /**
+     * Gestor del evento de ratón. Cambia las imágenes de posición.
+     * @param e evento que hay que procesar.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-
-
         if (primerClick == null) {
             primerClick = ((JLabel) e.getComponent());
             primerClick.setBorder(BorderFactory.createLineBorder(Color.RED,3));
             return;
         }
+
         SubImagen aux;
         JLabel segundoClcik = ((JLabel) e.getComponent());
         int posprimer = (Integer.parseInt(primerClick.getName()));
@@ -49,6 +60,10 @@ public class GestorRaton extends MouseAdapter {
         primerClick = null;
     }
 
+    /**
+     * Comprueba si el puzzle está bien hecho.
+     * @return true si está bien hecho, false si sigue desordenado.
+     */
     private boolean esCorrecto() {
         boolean esCorrecto = true;
 
@@ -60,6 +75,4 @@ public class GestorRaton extends MouseAdapter {
         }
         return esCorrecto;
     }
-
-
 }

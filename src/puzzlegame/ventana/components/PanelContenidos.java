@@ -1,6 +1,5 @@
 package puzzlegame.ventana.components;
 
-import puzzlegame.entidades.Partida;
 import puzzlegame.entidades.Imagen;
 import puzzlegame.gestores.GestorEventos;
 import puzzlegame.ventana.components.relacionado_juego.PanelPartida;
@@ -15,13 +14,14 @@ import static puzzlegame.ventana.components.PanelClasificacion.*;
 /**
  * @author jcasb
  * @author Marc Link
+ * Gestiona las escenas del programa, pudiendo cambiar entre ellas.
  */
 public class PanelContenidos extends JPanel {
     private JToolBar iconosMenu;
     private final JSplitPane jsp;
     private Imagen imagenPartida;
     private final String pathIconos = "resources/assets/icons/";
-
+    //Instancia estática de PanelContenidos para poder referirnos a la clase desde cualquier punto del programa.
     private static final PanelContenidos panelContenidos = new PanelContenidos();
 
     public PanelContenidos() {
@@ -41,6 +41,10 @@ public class PanelContenidos extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * Devuelve la instancia de {@link PanelContenidos}.
+     * @return instancia de {@link PanelContenidos}.
+     */
     public static PanelContenidos getInstance() {
         return panelContenidos;
     }
@@ -82,6 +86,11 @@ public class PanelContenidos extends JPanel {
         return iconosMenu;
     }
 
+    /**
+     * Método que genera botones y los añade a una {@link JToolBar}.
+     * @param imagen imagen que tendrá el botón.
+     * @param e ActionLister que tendrá el botón.
+     */
     private void addBoton(ImageIcon imagen, ActionListener e) {
         JButton boton = new JButton();
         boton.setIcon(imagen);
@@ -90,16 +99,29 @@ public class PanelContenidos extends JPanel {
         iconosMenu.add(boton);
     }
 
+    /**
+     * Cambia la escena del programa para mostrar la partida.
+     * @param img imagen con la que se jugará al juego.
+     */
     public void cambiarAPartida(Imagen img) {
         imagenPartida = img;
         jsp.setRightComponent(new PanelPartida(imagenPartida));
         jsp.setDividerLocation(180);
     }
+
+    /**
+     * Cambia la escena del programa para mostrar la solución del puzzle.
+     * @param esSol boolean que indica si el jugador a acertado o no.
+     */
     public void cambiarASolucion(boolean esSol) {
         jsp.setRightComponent(new PanelSolucion(imagenPartida, esSol));
         jsp.setDividerLocation(180);
     }
 
+    /**
+     * Cambia la escena del programa para mostrar el historial.
+     * @param mode modo en el que se tiene que mostrar el historial.
+     */
     public void cambiarAClasificacion(int mode) {
         String nombreBuscado = "";
         if (mode == PanelClasificacion.HISTORIAL_SELECTIVO){
@@ -116,6 +138,9 @@ public class PanelContenidos extends JPanel {
         }
     }
 
+    /**
+     * Cambia la escena del programa para mostrar el menú de inicio.
+     */
     public void cambiarAInicio() {
         jsp.setRightComponent(new PanelStandBy());
         jsp.setDividerLocation(180);

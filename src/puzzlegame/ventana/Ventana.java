@@ -11,6 +11,7 @@ import static puzzlegame.ventana.components.PanelClasificacion.*;
 /**
  * @author jcasb
  * @author Marc Link
+ * Crea el Frame principal del programa.
  */
 public class Ventana extends JFrame {
     public Ventana() {
@@ -35,6 +36,10 @@ public class Ventana extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * Inicializa un JMenuBar y le añade las opciones necesarias.
+     * @return objeto {@link JMenuBar}.
+     */
     public JMenuBar initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("MENU");

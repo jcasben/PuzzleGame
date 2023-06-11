@@ -5,8 +5,17 @@ import puzzlegame.entidades.Imagen;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Marc Link
+ * @author jcasben
+ * Contenedor donde se mostrarán los paneles que conforman una partida.
+ */
 public class PanelPartida extends JPanel {
-
+    /**
+     * Crea un nuevo {@link PanelSubImagen} e inicializa el temporizador {@link JProgressBar}. Estos dos elementos se
+     * introducen en un {@link JSplitPane}.
+     * @param img imagen a partir de la cual se hará el puzzle.
+     */
     public PanelPartida(Imagen img) {
         setLayout(new BorderLayout());
         JSplitPane jsp2 = new JSplitPane(

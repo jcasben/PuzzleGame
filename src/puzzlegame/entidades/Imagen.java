@@ -47,7 +47,7 @@ public class Imagen extends JPanel {
                 path = "resources/assets/puzzles/";
                 imga = escogerImagenAleatoria();
             }
-            imgSinEscala = ImageIO.read(new File(path  + "\\" + imga));
+            imgSinEscala = ImageIO.read(new File(path  + "/" + imga));
             img = imgSinEscala.getScaledInstance(ANCHO, ALTO, Image.SCALE_DEFAULT);
         }catch (IOException e){
             e.printStackTrace();
@@ -56,9 +56,9 @@ public class Imagen extends JPanel {
     }
 
     /**
-     * Divide las imagenes.
-     * @param filas
-     * @param columnas
+     * Divide las imagenes en tantas filas y columnas como se indique.
+     * @param filas cantidad de filas.
+     * @param columnas cantidad de columnas.
      */
     private void dividir(int filas, int columnas){
         divisiones = new SubImagen[filas*columnas];
@@ -74,6 +74,12 @@ public class Imagen extends JPanel {
         desordenarSubImag(divisiones, filas,columnas);
     }
 
+    /**
+     * Desordena el conjunto el divisiones de una imagen.
+     * @param s conjunto de divisiones.
+     * @param a cantidad de filas.
+     * @param b cantidad de columnas.
+     */
     private void desordenarSubImag(SubImagen[] s, int a, int b) {
         Random ran = new Random();
         SubImagen aux;
@@ -83,6 +89,13 @@ public class Imagen extends JPanel {
             s[k] = s[i];
             s[i] = aux;
         }
+
+        for (int i = 0; i < s.length; i++) {
+            if (s[i].getPos() != i) {
+                return;
+            }
+        }
+        desordenarSubImag(s,a,b);
     }
 
     /**

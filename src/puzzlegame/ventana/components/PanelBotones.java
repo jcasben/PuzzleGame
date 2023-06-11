@@ -1,6 +1,5 @@
 package puzzlegame.ventana.components;
 
-import puzzlegame.entidades.Partida;
 import puzzlegame.gestores.GestorEventos;
 
 import javax.swing.*;
@@ -13,9 +12,10 @@ import static puzzlegame.ventana.components.PanelClasificacion.HISTORIAL_SELECTI
 /**
  * @author jcasb
  * @author Marc Link
+ * Panel que contiene los botones del panel lateral del menú.
  */
 public class PanelBotones extends JPanel {
-
+    //Crea y añade los botones al panel lateral.
     public PanelBotones() {
         setLayout(new GridLayout(4,1));
 
@@ -42,6 +42,11 @@ public class PanelBotones extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * Método que genera botones y los añade al panel.
+     * @param texto texto que contendrá el botón.
+     * @param e ActionListener que tendrá el botón.
+     */
     private void addBoton(String texto, ActionListener e) {
         JButton boton = new JButton(texto);
         boton.setBackground(Color.DARK_GRAY);

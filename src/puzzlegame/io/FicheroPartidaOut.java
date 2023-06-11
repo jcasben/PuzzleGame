@@ -9,11 +9,15 @@ import java.io.RandomAccessFile;
 
 /**
  * @author jcasben
+ * @author Marc Link
  */
 public class FicheroPartidaOut {
     private RandomAccessFile raf;
     private final int MAXLONGNOMBRE = 15;
 
+    /**
+     * Inicia la instancia del RandomAccessFile en modo lectura/escritura.
+     */
     public FicheroPartidaOut() {
         try {
             raf = new RandomAccessFile(new File("resources/resultados.dat"),"rw");
@@ -22,6 +26,10 @@ public class FicheroPartidaOut {
         }
     }
 
+    /**
+     * Escribe los datos de la partida.
+     * @param partida partida de la que hay que escribir los datos.
+     */
     public void escribirPartida(Partida partida) {
         try {
             String nombre = partida.getNombre();

@@ -12,9 +12,12 @@ import java.util.Date;
 /**
  * @author jcasben
  * @author Marc Link
+ * Clase encargada de iniciar una nueva partida.
  */
 public class Partida {
+    //Se crea una instancia estática para podernos referir a partida desde cualquier parte del programa.
     public static Partida partida;
+    public static boolean enPartida = false;
     private final JTextField name = new JTextField();
     private final JTextField campoDivisionesHorizontales = new JTextField();
     private final JTextField campoDivisionesVerticales = new JTextField();
@@ -24,9 +27,9 @@ public class Partida {
     private final String fecha;
     private boolean partidaGanada = false;
 
-
     public Partida() {
         nuevaVentanaPrepartida();
+        //Nos permite coger la fecha y la hora en la que se inició una partida y darle un formato.
         DateFormat formater = new SimpleDateFormat("HH:mm dd/MM/yyyy");
         fecha = formater.format(new Date());
     }
@@ -35,6 +38,10 @@ public class Partida {
         partida = new Partida();
     }
 
+    /**
+     * Crea una ventana emergente que pide al usuario que introduzca su nombre y las divisiones horizontales y verticales
+     * que desea para su puzzle.
+     */
     private void nuevaVentanaPrepartida() {
         JFrame askingFrame = new JFrame("INTRODUCCIÓN DATOS");
         askingFrame.setBounds(300,350,700,150);
@@ -66,7 +73,9 @@ public class Partida {
         JButton b = new JButton("CONFIRMAR");
         b.addActionListener(e -> {
             if(guardarInputJugador()) {
+                //Libera los recursos dde la ventana.
                 askingFrame.dispose();
+                enPartida = true;
                 Imagen puzzlePartida = new Imagen(divisionesHorizontales, divisionesVerticales); //crear imagen
                 PanelContenidos.getInstance().cambiarAPartida(puzzlePartida); //mostrar juego puzzle
             }
@@ -75,10 +84,15 @@ public class Partida {
         askingFrame.add(button, BorderLayout.SOUTH);
     }
 
+    /**
+     * Comprueba que el input del usuario cumpla los requisitos pedidos para el correcto funcionamiento del programa.
+     * @return boolean que indica si el input es válido o no.
+     */
     private boolean guardarInputJugador() {
-        String message = "HAY ERRORES EN LOS DATOS INTRODUCIDOS. POR FAVOR, CORRIGELOS.\n" +
+        String mensaje = "HAY ERRORES EN LOS DATOS INTRODUCIDOS. POR FAVOR, CORRIGELOS.\n" +
                         "\nRECUERDA QUE EL NOMBRE NO SE PUEDE DEJAR EN BLANCO Y QUE LAS " +
                         "\nSUBDIVISIONES TIENEN QUE SER NÚMEROS ENTEROS MAYORES QUE 1";
+        //Boolean que indican si cada uno de los parámetros a introducir está bien introducido.
         boolean bname, bHDivs, bVDivs;
         bname = bHDivs = bVDivs = false;
 
@@ -97,11 +111,11 @@ public class Partida {
                 bVDivs = true;
             }
         } catch(NumberFormatException nfe) {
-            //ignore
+            //Ignoramos la excepción, ya que por defecto los boolean que indican si los parámetros son correctos son true.
         }
 
         if(!bname || !bHDivs || !bVDivs) {
-            JOptionPane.showMessageDialog(null,message);
+            JOptionPane.showMessageDialog(null,mensaje);
         } else {
             System.out.println(nombreUsuario + "\n" + divisionesHorizontales + "\n" + divisionesVerticales);
             return true;
@@ -109,9 +123,14 @@ public class Partida {
         return false;
     }
 
+    /**
+     * Guarda en el fichero el registro de la partida.
+     * @param haGanado indica si el jugador ha ganado o no.
+     */
     public void guardarPartida(boolean haGanado) {
         partidaGanada = haGanado;
         new FicheroPartidaOut().escribirPartida(this);
+        enPartida = false;
         partida = null;
     }
 

@@ -7,7 +7,17 @@ import puzzlegame.ventana.components.PanelContenidos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Marc Link
+ * @author jcasben
+ * Panel donde se mostrará la solución al puzzle.
+ */
 public class PanelSolucion extends JPanel {
+    /**
+     * Al ser llamado, dependiendo de si se ha ganado o se ha perdido, se mostrará un mensaje.
+     * @param solucion puzzle resuelto.
+     * @param acertado boolean que indica si ha ganado o ha perdido.
+     */
     public PanelSolucion(Imagen solucion, boolean acertado){
         //Cuando llega a este punto puede llegar por varios motivos:
         //  - Ha acertado (acertado = true)
@@ -19,6 +29,7 @@ public class PanelSolucion extends JPanel {
             JOptionPane.showMessageDialog(null,"SE TE HA ACABADO EL TIEMPO");
         }
 
+        //Se guarda el contenido de la partida después de haber acabado la partida.
         Partida.partida.guardarPartida(acertado);
 
         setLayout(new BorderLayout());
@@ -33,6 +44,10 @@ public class PanelSolucion extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * Contenedor en el que está el botón que conduce al inicio después de acabar la partida.
+     * @return devuelve el panel con el botón.
+     */
     private JPanel botonContiunar() {
         JPanel panelContinuar = new JPanel();
         JButton botonContinuar = new JButton("CONTINUAR");
@@ -47,5 +62,4 @@ public class PanelSolucion extends JPanel {
 
         return panelContinuar;
     }
-
 }

@@ -7,13 +7,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Marc Link
+ * @author jcasben
+ * Panel que contiene el temporizador de la partida.
+ */
 public class PanelTemporizador extends JPanel implements ActionListener {
     private final Timer TIMER;
-    private JProgressBar progressBar;
+    private final JProgressBar progressBar;
     private int tick;
-    private int maxTicks;
+    private final int maxTicks;
     public static PanelTemporizador panTemp;
 
+    /**
+     * Crea un nuevo {@link Timer} que se actualiza cada segundo. También inicializa el {@link JProgressBar}.
+     * @param tempMax tiempo que tiene que durar el {@link Timer}.
+     */
     public PanelTemporizador(int tempMax) {
         setLayout(new BorderLayout());
         maxTicks = tempMax;
@@ -27,14 +36,27 @@ public class PanelTemporizador extends JPanel implements ActionListener {
         add(progressBar);
     }
 
+    /**
+     * Instancia estática de {@link PanelTemporizador} para poder referirnos al temporizador desde cualquier parte del
+     * programa.
+     * @param tempMax tiempo que tiene que durar el {@link Timer}.
+     * @return instancia de {@link PanelTemporizador}.
+     */
     public static PanelTemporizador iniPanTemp(int tempMax) {
         return panTemp = new PanelTemporizador(tempMax);
     }
 
+    /**
+     * Para el {@link Timer}.
+     */
     public void pararTemp() {
         TIMER.stop();
     }
 
+    /**
+     * Método que ejecuta en cada segundo el {@link Timer}. Este hace avanzar visualmente el {@link JProgressBar}.
+     * @param e evento a tratar.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (tick == maxTicks) PanelContenidos.getInstance().cambiarASolucion(false);
