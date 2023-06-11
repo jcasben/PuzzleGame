@@ -18,7 +18,7 @@ public class PanelSubImagen extends JPanel {
      * @param columnas cantidad de columnas.
      */
     public PanelSubImagen(SubImagen [] x, int filas, int columnas) {
-        setLayout(new GridLayout(filas,columnas,8,8));
+        setLayout(new GridLayout(filas,columnas,5,5));
         GestorRaton ml = new GestorRaton(x);
         for (SubImagen sub : x) {
             add(sub.getSubimagen(ml));
