@@ -19,5 +19,5 @@ Para clonar el repositorio, ejecute el siguiente comando en la consola sobre el 
 ```
 git clone https://github.com/jcasben/PuzzleGame.git
 ```
-Una vez clonado el proyecto, se deberá abrir en un editor de código o alguna aplicación similar que permita la ejecución de programas desarrollados en Java. Hay que tener en cuenta que para este proyecto se ha
-utilizado la versión 17 de Java, así que se debe tener instalada esa versión de Java o una superior en su máquina para que el proyecto funciona adecuadamente.
+Una vez clonado o descargado el proyecto, se deberá abrir en un editor de código o alguna aplicación similar que permita la ejecución de programas desarrollados en Java. Hay que tener en cuenta que para este
+proyecto se ha utilizado la versión 17 de Java, así que se debe tener instalada esa versión de Java o una superior en su máquina para que el proyecto funciona adecuadamente.
