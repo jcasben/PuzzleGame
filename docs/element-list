@@ -1,0 +1,7 @@
+puzzlegame
+puzzlegame.entidades
+puzzlegame.gestores
+puzzlegame.io
+puzzlegame.ventana
+puzzlegame.ventana.components
+puzzlegame.ventana.components.relacionado_juego
