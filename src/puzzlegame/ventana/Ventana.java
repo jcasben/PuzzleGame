@@ -6,7 +6,7 @@ import puzzlegame.ventana.components.PanelContenidos;
 import javax.swing.*;
 import java.awt.*;
 
-import static puzzlegame.ventana.components.PanelClasificacion.*;
+import static puzzlegame.ventana.components.PanelHistorial.*;
 
 /**
  * @author jcasb
@@ -51,8 +51,8 @@ public class Ventana extends JFrame {
         nuevaPartidaMenu.addActionListener(new GestorEventos().nuevaPartida());
         menu.add(nuevaPartidaMenu);
 
-        JMenuItem clasificacionMenu = new JMenuItem("CLASIFICACIÓN");
-        clasificacionMenu.addActionListener(new GestorEventos().clasificacion(CLASIFICACION));
+        JMenuItem clasificacionMenu = new JMenuItem("HISTORIAL GENERAL");
+        clasificacionMenu.addActionListener(new GestorEventos().clasificacion(HISTORIAL_GENERAL));
         menu.add(clasificacionMenu);
 
         JMenuItem historialMenu = new JMenuItem("HISTORIAL SELECTIVO");

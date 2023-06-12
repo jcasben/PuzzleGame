@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-import static puzzlegame.ventana.components.PanelClasificacion.*;
+import static puzzlegame.ventana.components.PanelHistorial.*;
 
 /**
  * @author jcasb
@@ -66,7 +66,7 @@ public class PanelContenidos extends JPanel {
 
         addBoton(
                 new ImageIcon(pathIconos + "generalHist.jpg"),
-                new GestorEventos().clasificacion(CLASIFICACION)
+                new GestorEventos().clasificacion(HISTORIAL_GENERAL)
         );
 
         addBoton(
@@ -124,16 +124,16 @@ public class PanelContenidos extends JPanel {
      * Cambia la escena del programa para mostrar el historial.
      * @param mode modo en el que se tiene que mostrar el historial.
      */
-    public void cambiarAClasificacion(int mode) {
+    public void cambiarAHistorial(int mode) {
         String nombreBuscado = "";
-        if (mode == PanelClasificacion.HISTORIAL_SELECTIVO){
+        if (mode == PanelHistorial.HISTORIAL_SELECTIVO){
             nombreBuscado = JOptionPane.showInputDialog(
                     null,
                     "INTRODUCE EL NOMBRE DEL JUGADOR BUSCADO"
             );
         }
         if (nombreBuscado != null){
-            jsp.setRightComponent(new PanelClasificacion(mode, nombreBuscado));
+            jsp.setRightComponent(new PanelHistorial(mode, nombreBuscado));
             jsp.setDividerLocation(180);
         } else {
             PanelContenidos.getInstance().cambiarAInicio();

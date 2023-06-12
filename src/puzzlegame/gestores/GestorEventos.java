@@ -39,7 +39,7 @@ public class GestorEventos {
                 JOptionPane.showMessageDialog(null, "DEBES ACABAR LA PARTIDA PRIMERO");
                 return;
             }
-            PanelContenidos.getInstance().cambiarAClasificacion(mode);
+            PanelContenidos.getInstance().cambiarAHistorial(mode);
         };
     }
 

@@ -10,22 +10,22 @@ import java.awt.*;
  * @author Marc Link
  * Permite ver el historial de partidas.
  */
-public class PanelClasificacion extends JPanel {
-    public static final int CLASIFICACION = 0;
+public class PanelHistorial extends JPanel {
+    public static final int HISTORIAL_GENERAL = 0;
     public static final int HISTORIAL_SELECTIVO = 1;
 
     /**
      * Crea un {@link JTextArea} y escribe en el el historial de partidas. Tiene 2 modos:
-     *   - Clasificación (0)
+     *   - Historial general (0)
      *   - Historial Selectivo (1)
      * @param mode indica el modo.
      * @param nombreBuscado nombre que tendrá que buscar el historial selectivo.
      */
-    public PanelClasificacion(int mode, String nombreBuscado) {
+    public PanelHistorial(int mode, String nombreBuscado) {
         setLayout(new BorderLayout());
 
         JTextArea jta = new JTextArea();
-        if (mode == CLASIFICACION) {
+        if (mode == HISTORIAL_GENERAL) {
             jta.setText(new FicheroPartidaIn().leerPartidas());
         } else if (mode == HISTORIAL_SELECTIVO) {
             jta.setText(new FicheroPartidaIn().leerSelectivo(nombreBuscado));

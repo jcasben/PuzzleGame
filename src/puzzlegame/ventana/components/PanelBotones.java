@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-import static puzzlegame.ventana.components.PanelClasificacion.CLASIFICACION;
-import static puzzlegame.ventana.components.PanelClasificacion.HISTORIAL_SELECTIVO;
+import static puzzlegame.ventana.components.PanelHistorial.HISTORIAL_GENERAL;
+import static puzzlegame.ventana.components.PanelHistorial.HISTORIAL_SELECTIVO;
 
 /**
  * @author jcasb
@@ -25,12 +25,12 @@ public class PanelBotones extends JPanel {
         );
 
         addBoton(
-                "CLASIFICACIÓN GENERAL",
-                new GestorEventos().clasificacion(CLASIFICACION)
+                "HISTORIAL GENERAL",
+                new GestorEventos().clasificacion(HISTORIAL_GENERAL)
         );
 
         addBoton(
-                "HISTORIAL",
+                "HISTORIAL SELECTIVO",
                 new GestorEventos().clasificacion(HISTORIAL_SELECTIVO)
         );
 
