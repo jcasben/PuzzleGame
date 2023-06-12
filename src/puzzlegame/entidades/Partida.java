@@ -73,7 +73,7 @@ public class Partida {
         JButton b = new JButton("CONFIRMAR");
         b.addActionListener(e -> {
             if(guardarInputJugador()) {
-                //Libera los recursos dde la ventana.
+                //Libera los recursos de la ventana.
                 askingFrame.dispose();
                 enPartida = true;
                 Imagen puzzlePartida = new Imagen(divisionesHorizontales, divisionesVerticales); //crear imagen
