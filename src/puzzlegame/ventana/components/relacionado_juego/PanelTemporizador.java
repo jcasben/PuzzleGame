@@ -29,8 +29,8 @@ public class PanelTemporizador extends JPanel implements ActionListener {
         TIMER = new Timer(1000,this);
         TIMER.start();
         progressBar = new JProgressBar();
-        progressBar.setBackground(Color.PINK);
-        progressBar.setForeground(Color.DARK_GRAY);
+        progressBar.setBackground(Color.DARK_GRAY);
+        progressBar.setForeground(Color.RED);
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
         add(progressBar);
