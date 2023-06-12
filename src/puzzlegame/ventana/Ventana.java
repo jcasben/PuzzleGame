@@ -59,7 +59,7 @@ public class Ventana extends JFrame {
         historialMenu.addActionListener(new GestorEventos().clasificacion(HISTORIAL_SELECTIVO));
         menu.add(historialMenu);
 
-        JMenuItem cambiarDirectorioMenu = new JMenuItem("CAMBIAR DIRECTORIO DE IMÁGENES");
+        JMenuItem cambiarDirectorioMenu = new JMenuItem("CAMBIAR DIRECTORIO DE IMAGENES");
         cambiarDirectorioMenu.addActionListener(new GestorEventos().cambiarDirectorio());
         menu.add(cambiarDirectorioMenu);
 
