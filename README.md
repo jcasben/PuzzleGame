@@ -7,7 +7,7 @@ Este proyecto ha sido desarrollado por:
 - Jesús Castillo Benito
 
 
-##¿Cómo probarlo?
+## ¿Cómo probarlo?
 Hay distintas maneras en las que puedes probar nuestro proyecto:
 
 - Descargándote el archivo comprimido (zip) que contiene el programa haciendo click [aquí](https://github.com/jcasben/PuzzleGame/archive/refs/heads/master.zip).
