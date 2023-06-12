@@ -42,7 +42,10 @@ public class Ventana extends JFrame {
      */
     private JMenuBar initMenuBar() {
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(Color.DARK_GRAY);
         JMenu menu = new JMenu("MENU");
+        menu.setBackground(Color.DARK_GRAY);
+        menu.setForeground(Color.WHITE);
 
         JMenuItem nuevaPartidaMenu = new JMenuItem("NUEVA PARTIDA");
         nuevaPartidaMenu.addActionListener(new GestorEventos().nuevaPartida());

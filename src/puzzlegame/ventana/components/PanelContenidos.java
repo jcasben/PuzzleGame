@@ -56,6 +56,7 @@ public class PanelContenidos extends JPanel {
      */
     private JToolBar iniciarBarraTareas() {
         iconosMenu = new JToolBar();
+        iconosMenu.setBackground(Color.DARK_GRAY);
         iconosMenu.setFloatable(false);
         // ---------------------------------------- Creación de los botones ----------------------------------------
         addBoton(
@@ -94,6 +95,7 @@ public class PanelContenidos extends JPanel {
     private void addBoton(ImageIcon imagen, ActionListener e) {
         JButton boton = new JButton();
         boton.setIcon(imagen);
+        boton.setBackground(Color.DARK_GRAY);
         boton.setFocusPainted(false);
         boton.addActionListener(e);
         iconosMenu.add(boton);
